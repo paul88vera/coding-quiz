@@ -3,14 +3,14 @@
   margin: 0;
 }
 body {
-  padding: 2em;
+  padding: 1em;
 }
 header {
   font-size: large;
   width: 100%;
   margin: 0 auto;
   display: flex;
-  height: 120px;
+  height: 100px;
   justify-content: space-around;
 }
 #highScore {
@@ -27,7 +27,8 @@ header {
 }
 #question-container {
   margin: 0 auto;
-  width: 60%;
+  width: 70%;
+  justify-content: space-around;
 }
 .question {
   font-size: 40px;
@@ -41,8 +42,8 @@ header {
   margin: 20px 0px;
   display: block;
   padding: 1em 2em;
-  text-align: left;
-  width: 300px;
+  width: 100%;
+  text-align: center;
   border-radius: 5px;
   background-color: rgb(107, 47, 164);
   color: #fff;
