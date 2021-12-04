@@ -1,5 +1,6 @@
 // new question divisions with all elements
 // multiple questions
+// if statement to check to see if the answer is false
 // high score pop up
 // store high score in localStorage
 
@@ -15,7 +16,7 @@ time.innerHTML = "Time: 60";
 // questions array
 var questions = [
  {
-  question: "What does a header element look like?",
+  question: "What does a header element look like in html?",
   answers: [
    "<html>",
    "<body>",
@@ -25,29 +26,29 @@ var questions = [
   correctAnswer: "<html>"
  },
  {
-  question: "What?",
+  question: "This is another question?",
   answers: [
-   "<html>",
-   "<body>",
-   "<header>",
-   "<script>"
+   "Answer",
+   "Incorrect Answer",
+   "Incorrect Answer",
+   "Incorrect Answer"
   ],
-  correctAnswer: ""
+  correctAnswer: "Answer"
  },
  {
   question: "What?",
   answers: [
-   "<html>",
-   "<body>",
-   "<header>",
-   "<script>"
+   "Answer",
+   "Incorrect Answer",
+   "Incorrect Answer",
+   "Incorrect Answer"
   ],
-  correctAnswer: ""
+  correctAnswer: "Answer"
  },
 
 ]
 
-// TODO: create a better quiz function that uses the array
+// TODO: create a better quiz function that uses the array of questions and creates the correct elements
 //// test function
 var createQuestion1 = function() {
  var questionEl = document.createElement("h2");
@@ -75,19 +76,25 @@ var createQuestion1 = function() {
  buttonEl4.className = "answer-btn";
  buttonEl4.textContent = "I'm fourth baby!";
 };
-
+// corrected function
 var questionSection = function() {
+ var questionEl = document.createElement("h2");
 
+ questions.question.addClass(".question");
+ questions.answers.addClass(".answer-btn");
 };
+
+
 
 // runs a welcome page then onclick it will run the first question
 window.onclick = function(event) {
  var welcome = document.querySelector("#welcome");
  welcome.remove();
- createQuestion1();
+ questionSection();
 
 // Timer Start Interval
 var setTimer = 60;
+var timeCounter = 0;
 var timer = setInterval(function() {
   if (setTimer <= 0) {
    clearInterval(setTimer);
@@ -97,6 +104,7 @@ var timer = setInterval(function() {
    time.innerHTML = "Time: " + setTimer;
   }
   setTimer -= 1;
+  timeCounter += 1;
 }, 1000);
 
 }
