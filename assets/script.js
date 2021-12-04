@@ -7,20 +7,58 @@ var questionContainer = document.querySelector("#question-container");
 var question = document.querySelector("h2");
 var btnContainer = document.querySelector(".btn-container");
 var button = document.querySelector("button");
+var time = document.querySelector("#time");
 
-// css calls
-var buttonClass;
+// time notify
+time.innerHTML = "Time: 60";
 
+// questions array
+var questions = [
+ {
+  question: "What does a header element look like?",
+  answers: [
+   "<html>",
+   "<body>",
+   "<header>",
+   "<script>"
+  ],
+  correctAnswer: "<html>"
+ },
+ {
+  question: "What?",
+  answers: [
+   "<html>",
+   "<body>",
+   "<header>",
+   "<script>"
+  ],
+  correctAnswer: ""
+ },
+ {
+  question: "What?",
+  answers: [
+   "<html>",
+   "<body>",
+   "<header>",
+   "<script>"
+  ],
+  correctAnswer: ""
+ },
+
+]
+
+// TODO: create a better quiz function that uses the array
+//// test function
 var createQuestion1 = function() {
  var questionEl = document.createElement("h2");
  questionContainer.appendChild(questionEl);
  questionEl.className = "question";
- questionEl.textContent = "What's up, homies!!";
+ // questionEl.textContent = questions[question[0]];
 
  var buttonEl1= document.createElement("button");
  btnContainer.appendChild(buttonEl1);
  buttonEl1.className = "answer-btn";
- buttonEl1.textContent = "I'm new here!";
+ // buttonEl1.textContent = questions.answer[0];
 
  var buttonEl2= document.createElement("button");
  btnContainer.appendChild(buttonEl2);
@@ -38,4 +76,27 @@ var createQuestion1 = function() {
  buttonEl4.textContent = "I'm fourth baby!";
 };
 
-createQuestion1();
+var questionSection = function() {
+
+};
+
+// runs a welcome page then onclick it will run the first question
+window.onclick = function(event) {
+ var welcome = document.querySelector("#welcome");
+ welcome.remove();
+ createQuestion1();
+
+// Timer Start Interval
+var setTimer = 60;
+var timer = setInterval(function() {
+  if (setTimer <= 0) {
+   clearInterval(setTimer);
+   time.innerHTML = "Times Up!";
+  }
+  else {
+   time.innerHTML = "Time: " + setTimer;
+  }
+  setTimer -= 1;
+}, 1000);
+
+}
