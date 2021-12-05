@@ -19,7 +19,6 @@ $(".start-btn").click(function () {
   questionCounter = 0;
   totalQuestions = 5;
 
-
   var welcome = document.querySelector("#welcome");
   welcome.remove();
   answerCheck();
@@ -28,43 +27,44 @@ $(".start-btn").click(function () {
   var timer = setInterval(function () {
     if (setTimer <= 0) {
       clearInterval(setTimer);
-      time.innerHTML = "Times Up!";
+      
     } else {
       time.innerHTML = "Time: " + setTimer + " seconds";
     }
     setTimer -= 1;
     timeCounter += 1;
   }, 1000);
-  
+
   console.log(score);
 });
 
 // Answer Verification Function
-var answerCheck = function() {
+var answerCheck = function () {
   var verify = document.querySelector("#verify");
-  
+
   var negAnswerArr = [
     "That's not quite right. Try again!",
     "Nope, not That one... Try again!",
     "That's not it!",
-    "Incorrect!"
-  ]
-  
+    "Incorrect!",
+  ];
+
   var posAnswerArr = [
     "Correct!",
     "Nice!",
     "You got it!",
     "Let's go!",
-    "You're on a roll!"
-  ]
-  
+    "You're on a roll!",
+  ];
+
   // starts with question one visible
   q1.style.display = "none";
   q1.style.display = "block";
-  
+
   // Verification for Correct answer clicks
-  $(".correct").click(function() {
-    var arrRandom = posAnswerArr[Math.floor(Math.random() * negAnswerArr.length)];
+  $(".correct").click(function () {
+    var arrRandom =
+      posAnswerArr[Math.floor(Math.random() * negAnswerArr.length)];
     var verified = document.createElement("h3");
     verify.className = "h3";
     verify.append(verified);
@@ -72,32 +72,26 @@ var answerCheck = function() {
     setTimer += 2;
     score += 2;
     questionCounter++;
-    
+
     if (q1.style.display === "block") {
       q1.style.display = "none";
-      q2.style.display = "block";   
-    }
-    else if (q2.style.display === "block"){
+      q2.style.display = "block";
+    } else if (q2.style.display === "block") {
       q2.style.display = "none";
-      q3.style.display = "block"; 
-    }
-    else if (q3.style.display === "block") {
+      q3.style.display = "block";
+    } else if (q3.style.display === "block") {
       q3.style.display = "none";
-      q4.style.display = "block";        
-    }
-    else if (q4.style.display === "block") {
+      q4.style.display = "block";
+    } else if (q4.style.display === "block") {
       q4.style.display = "none";
       q5.style.display = "block";
     }
-    else {
-      style.display = "none";
-    }
-    
   });
-  
+
   // Verification for Incorrect answer clicks
-  $(".incorrect").click(function() {
-    var arrRandom = negAnswerArr[Math.floor(Math.random() * negAnswerArr.length)];
+  $(".incorrect").click(function () {
+    var arrRandom =
+      negAnswerArr[Math.floor(Math.random() * negAnswerArr.length)];
     var verified = document.createElement("h3");
     verify.className = "h3";
     verify.append(verified);
@@ -106,6 +100,33 @@ var answerCheck = function() {
     score -= 1;
   });
 
+  // Ending Highscore Form Function
+  $(".fifth").click(function () {
+    
+    setTimeout(() => {
+    q5.style.display = "none";
+    $("#verify").addClass("hidden");
+    $("#highscore-form").removeClass("hidden");
+    $("#highscore-form").addClass("visible");
+
+    // to make up for time lost viewing verifcation
+    setTimer += 1;
+    score += 1;
+
+    localStorage.setItem("score", JSON.stringify(score));
+    localStorage.setItem("setTimer", JSON.stringify(setTimer));
+    setTimer = false;
+
+    var completedTime = localStorage.getItem("setTimer", JSON.stringify(setTimer));
+
+    if (completedTime === 0) {
+      time.innerHTML = "Times Up!";
+    }
+    else {
+      time.innerHTML = "You completed the quiz in " + completedTime + " seconds!";
+    }
+    }, 1000);
+  });
 };
 
-// TODO: create a view highscore function
+// TODO:  Form Functionality
