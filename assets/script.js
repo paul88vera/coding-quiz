@@ -1,6 +1,3 @@
-// new question divisions with all elements
-// multiple questions
-// if statement to check to see if the answer is false
 // high score pop up
 // store high score in localStorage
 
@@ -16,52 +13,6 @@ time.innerHTML = "Time: 60 seconds";
 var setTimer = 60;
 var timeCounter = 0;
 
-// var questions = [
-// {
-//   question: "What does a multiplication symbol look like in Python?",
-//   choice1: "+",
-//   choice2: "//",
-//   choice3: "*",
-//   choice4: "%",
-//   answer: "*"
-// },
-// {
-//   question: "What does a modular division symbol look like in Python?",
-//   choice1: "+",
-//   choice2: "%",
-//   choice3: "//",
-//   choice4: "*",
-//   answer: "%"
-// },
-// {
-//   question: "What does a division symbol look like in Python?",
-//   choice1: "/",
-//   choice2: "//",
-//   choice3: "%",
-//   choice4: "*",
-//   answer: "/"
-// },
-// {
-//   question: "What does a floor division symbol look like in Python?",
-//   choice1: "//",
-//   choice2: "*",
-//   choice3: "/",
-//   choice4: "%",
-//   answer: "//"
-// },
-// {
-//   question: "What does an addition symbol look like in Python?",
-//   choice1: "+",
-//   choice2: "*",
-//   choice3: "/",
-//   choice4: "%",
-//   answer: "+"
-// },
-// ]
-
-// TODO: create a question reveal function
-// TODO: create a view highscore function
-
 // runs a welcome page then onclick it will run the first question
 $(".start-btn").click(function () {
   score = 0;
@@ -71,8 +22,7 @@ $(".start-btn").click(function () {
 
   var welcome = document.querySelector("#welcome");
   welcome.remove();
-  createQuestion();
-  // answerCheck();
+  answerCheck();
 
   // Timer Start Interval
   var timer = setInterval(function () {
@@ -85,31 +35,9 @@ $(".start-btn").click(function () {
     setTimer -= 1;
     timeCounter += 1;
   }, 1000);
+  
+  console.log(score);
 });
-
-// TODO: create a better quiz function that uses the array of questions and creates the correct elements
-// corrected function
-var createQuestion = function () {
-  answerCheck();
-  if (q1 === "#q1") {
-    $("#q1").removeClass('visible');
-    $("#q1").addClass("hidden");
-    $("#q2").removeClass("hidden");
-    $("#q2").addClass("visible");
-    
-  }
-  else if (q2 === "#q2") {
-    $("#q2").removeClass("visible");
-    $("#q2").addClass("hidden");
-    $("#q3").removeClass("hidden");
-    $("#q3").addClass("visible");
-   
-  }
-
-  
-  
-  
-};
 
 // Answer Verification Function
 var answerCheck = function() {
@@ -130,9 +58,9 @@ var answerCheck = function() {
     "You're on a roll!"
   ]
   
-  // div. #q1 / #q4 -- h3.question -- button.correct or .incorrect
-  $("#q1").removeClass("hidden");
-  $("#q1").addClass("visible");
+  // starts with question one visible
+  q1.style.display = "none";
+  q1.style.display = "block";
   
   // Verification for Correct answer clicks
   $(".correct").click(function() {
@@ -144,6 +72,27 @@ var answerCheck = function() {
     setTimer += 2;
     score += 2;
     questionCounter++;
+    
+    if (q1.style.display === "block") {
+      q1.style.display = "none";
+      q2.style.display = "block";   
+    }
+    else if (q2.style.display === "block"){
+      q2.style.display = "none";
+      q3.style.display = "block"; 
+    }
+    else if (q3.style.display === "block") {
+      q3.style.display = "none";
+      q4.style.display = "block";        
+    }
+    else if (q4.style.display === "block") {
+      q4.style.display = "none";
+      q5.style.display = "block";
+    }
+    else {
+      style.display = "none";
+    }
+    
   });
   
   // Verification for Incorrect answer clicks
@@ -157,4 +106,6 @@ var answerCheck = function() {
     score -= 1;
   });
 
-}
+};
+
+// TODO: create a view highscore function

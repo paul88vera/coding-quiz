@@ -61,10 +61,7 @@ hr, h3, .h3 {
   cursor: default;
 }
 
-/* reserved for questions */
+/* reserved for show & hide questions */
 .hidden {
   display: none;
-}
-.visible {
-  margin: 0 auto;
 }
