@@ -10,20 +10,90 @@
 <body>
   <header>
     <a id="highScore">View High Scores</a>
-    <p id="time">Time: 56</p>
+    <p id="time"></p>
   </header>
 
-  <div id="question-container">
-    <h2 class="question">This is your first question. How do you answer it?</h2>
-      <div class="btn-container">
-        <button class="answer-btn">This is an answer</button>
-        <button class="answer-btn">Value</button>
-        <button class="answer-btn">Value</button>
-        <button class="answer-btn">Value</button>
+  <div id="main-container">
+    <section id="welcome">
+      <div>
+        <h2>
+          Let's Start The Python Coding Quiz!
+        </h2>
+        <h3>
+          Are you ready?
+        </h3>
+        <button class="start-btn answer-btn">Let's Go!</button>
       </div>
-    <hr />
-    <h3 id="correct">Correct!</h3>
-    <h3 id="wrong">Wrong!</h3>
-  </div>
+    </section>
+
+    <section id="question-container">
+      <div id="q1" class="hidden">
+        <h3 class="question">What does a multiplication symbol look like in Python?</h3>
+        <button class="incorrect answer-btn">+</button>
+        <button class="incorrect answer-btn">//</button>
+        <button class="correct answer-btn first">*</button>
+        <button class="incorrect answer-btn">%</button>
+      </div>
+
+      <div id="q2" class="hidden">
+      <h3 class="question">What does a modular division symbol look like in Python?</h3>
+        <button class="incorrect answer-btn">+</button>
+        <button class="correct answer-btn second">%</button>
+        <button class="incorrect answer-btn">//</button>
+        <button class="incorrect answer-btn">*</button>
+      </div>
+
+      <div id="q3" class="hidden">
+        <h3 class="question">What does a division symbol look like in Python?</h3>
+        <button class="correct answer-btn">/</button>
+        <button class="incorrect answer-btn">//</button>
+        <button class="incorrect answer-btn">%</button>
+        <button class="incorrect answer-btn third">*</button>
+      </div>
+
+      <div id="q4" class="hidden">
+        <h3 class="question">What does a floor division symbol look like in Python?</h3>
+        <button class="incorrect answer-btn">+</button>
+        <button class="correct answer-btn fourth">//</button>
+        <button class="incorrect answer-btn">*</button>
+        <button class="incorrect answer-btn">%</button>
+      </div>
+
+      <div id="q5" class="hidden">
+        <h3 class="question">What does an addition symbol look like in Python?</h3>
+        <button class="incorrect answer-btn">%</button>
+        <button class="incorrect answer-btn">//</button>
+        <button class="correct answer-btn fifth">+</button>
+        <button class="incorrect answer-btn">*</button>
+      </div>
+    </section>
+
+    <div id="verify">
+
+    </div>
+
+
+  <!-- <section id="highscore-form">
+    <form action="submit">
+      <label for="initials">Please enter you initials: </label>
+      <input type="text" name="name" value=""/>
+      <button type="submit">Submit</button>
+    </form>
+  </section> -->
+
+  <!-- <section id="view-highscores">
+    <table>
+      <tr>
+        <th>Initials</th>
+        <th>Score</th>
+      </tr>
+      <tr id="highscore-data">-->
+        <!-- This is where the highscore data will go -->
+      <!-- </tr>
+    </table>
+  </section>  -->
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./assets/script.js"></script>
 </body>
 </html>
