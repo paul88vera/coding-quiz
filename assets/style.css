@@ -34,6 +34,7 @@ header {
   font-size: 40px;
   font-weight: 800;
   cursor: default;
+  color: black;
 }
 .btn-container {
   height: 30%;
@@ -53,9 +54,17 @@ header {
   background-color: rgb(178, 132, 225);
   cursor: pointer;
 }
-hr, h3 {
+hr, h3, .h3 {
   font-size: 20px;
   font-weight: 600;
   color: rgb(154, 154, 154);
   cursor: default;
+}
+
+/* reserved for questions */
+.hidden {
+  display: none;
+}
+.visible {
+  margin: 0 auto;
 }
