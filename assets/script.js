@@ -14,13 +14,12 @@ var setTimer = 60;
 var timeCounter = 0;
 
 // runs a welcome page then onclick it will run the first question
-$(".start-btn").click(function () {
+function start() {
   score = 0;
   questionCounter = 0;
   totalQuestions = 5;
 
-  var welcome = document.querySelector("#welcome");
-  welcome.remove();
+  $('#welcome').addClass("hidden");
   answerCheck();
 
   // Timer Start Interval
@@ -36,7 +35,7 @@ $(".start-btn").click(function () {
   }, 1000);
 
   console.log(score);
-});
+};
 
 // Answer Verification Function
 var answerCheck = function () {
@@ -73,6 +72,7 @@ var answerCheck = function () {
     score += 2;
     questionCounter++;
 
+    // Turns the questions on and off
     if (q1.style.display === "block") {
       q1.style.display = "none";
       q2.style.display = "block";
@@ -103,6 +103,7 @@ var answerCheck = function () {
   // Ending Highscore Form Function
   $(".fifth").click(function () {
     
+    // lets the user view their time before switching to initials submission
     setTimeout(() => {
     q5.style.display = "none";
     $("#verify").addClass("hidden");
@@ -113,20 +114,52 @@ var answerCheck = function () {
     setTimer += 1;
     score += 1;
 
-    localStorage.setItem("score", JSON.stringify(score));
-    localStorage.setItem("setTimer", JSON.stringify(setTimer));
+    localStorage.setItem("Score", "[" + score + "]");
+    localStorage.setItem("Time", "[" + setTimer + "]");
+
     setTimer = false;
 
-    var completedTime = localStorage.getItem("setTimer", JSON.stringify(setTimer));
+    localStorage.getItem("Time", JSON.stringify(setTimer));
 
-    if (completedTime === 0) {
-      time.innerHTML = "Times Up!";
-    }
-    else {
-      time.innerHTML = "You completed the quiz in " + completedTime + " seconds!";
-    }
+
+    
     }, 1000);
   });
 };
 
+
+const localStorageContent = localStorage.getItem("Name");
+var name = document.querySelector("#initials").value;
+
+
 // TODO:  Form Functionality
+function save() {
+  event.preventDefault();
+
+  // save and push new names to array
+  var saveName = window.localStorage.setItem("Name", "[]");
+  var newData = document.getElementById("initials").value;
+  var getName = localStorage.getItem("Name");
+  
+  if (getName == null) {
+    saveName;
+  }
+
+  var oldData = JSON.parse(getName);
+  oldData.push(newData);
+  
+  localStorage.setItem('Name',JSON.stringify(oldData));
+  
+  // save and push new scores to array
+
+
+  $("#highscore-form").remove();
+  $("#welcome").removeClass("hidden");
+  $("#welcome").addClass("visible");
+
+  location.reload();
+};
+
+
+
+

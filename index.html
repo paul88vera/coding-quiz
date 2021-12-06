@@ -22,11 +22,11 @@
         <h3>
           Are you ready?
         </h3>
-        <button class="start-btn answer-btn">Let's Go!</button>
+        <button class="start-btn answer-btn" onclick="start()">Let's Go!</button>
       </div>
-    </section>
+  </section>
 
-    <section id="question-container">
+  <section id="question-container">
       <div id="q1" class="hidden">
         <h3 class="question">What does a multiplication symbol look like in Python?</h3>
         <button class="incorrect answer-btn">+</button>
@@ -66,33 +66,36 @@
         <button class="correct answer-btn fifth">+</button>
         <button class="incorrect answer-btn">*</button>
       </div>
+    
+
+      <div id="verify">
+        <!-- This is where the right or correct notification will show -->
+      </div>
+
+
+    <section id="highscore-form" class="hidden">
+      <form>
+        <label for="initials" class="question">Please enter you initials: </label>
+        <input id="initials" type="text" name="name"/>
+        <br/>
+        <button id="submit" class="answer-btn" onclick="save()">Submit</button>
+      </form>
     </section>
 
-    <div id="verify">
-      <!-- This is where the right or correct notification will show -->
-    </div>
+    <section id="view-highscores">
+      <table>
+        <tr>
+          <th>Initials</th>
+          <th>Score</th>
+          <th>Time</th>
+        </tr>
+        <tr id="highscore-data">
+          <!-- This is where the highscore data will go -->
+        </tr>
+      </table>
+    </section> 
 
-
- <section id="highscore-form" class="hidden">
-    <form action="submit">
-      <label for="initials">Please enter you initials: </label>
-      <input type="text" name="name" value=""/>
-      <button type="submit">Submit</button>
-    </form>
   </section>
-
-  <!-- <section id="view-highscores">
-    <table>
-      <tr>
-        <th>Initials</th>
-        <th>Score</th>
-        <th>Time</th>
-      </tr>
-      <tr id="highscore-data">-->
-        <!-- This is where the highscore data will go -->
-      <!-- </tr>
-    </table>
-  </section>  -->
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="./assets/script.js"></script>

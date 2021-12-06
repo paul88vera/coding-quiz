@@ -60,8 +60,21 @@ hr, h3, .h3 {
   color: rgb(154, 154, 154);
   cursor: default;
 }
+#initials {
+  display: block;
+  width: 30%;
+  margin: 1em auto 0 auto;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.137);
+  text-align: center;
+  align-items: center;
+  border-radius: 5px;
+}
 
 /* reserved for show & hide questions */
 .hidden {
   display: none;
+}
+.visible{
+  
 }

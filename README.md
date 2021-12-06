@@ -7,6 +7,7 @@
 * HTML
 * CSS
 * JAVASCRIPT
+* JQUERY
 
 ## Website
 https://paul88vera.github.io/coding-quiz/
