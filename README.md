@@ -1,7 +1,11 @@
 # coding-quiz
 
-## Purpose
+![Screenshot]()
+![Screenshot]()
+![Screenshot]()
 
+## Purpose
+This project is a Python Operator Coding Quiz template for secondary students. The full quiz will be made at a later time.
 
 ## Built With
 * HTML

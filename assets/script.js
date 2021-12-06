@@ -1,6 +1,3 @@
-// high score pop up
-// store high score in localStorage
-
 var questionContainer = document.querySelector("#question-container");
 var btnContainer = document.querySelector(".btn-container");
 var button = document.querySelector("#q");
@@ -8,10 +5,9 @@ var time = document.querySelector("#time");
 var correct = document.querySelector(".correct");
 var incorrect = document.querySelector(".incorrect");
 
-// time notify
+// tells user how much time they will start with
 time.innerHTML = "Time: 60 seconds";
 var setTimer = 60;
-var timeCounter = 0;
 
 // runs a welcome page then onclick it will run the first question
 function start() {
@@ -19,28 +15,37 @@ function start() {
   questionCounter = 0;
   totalQuestions = 5;
 
-  $('#welcome').addClass("hidden");
+  // hides the welcome page
+  $("#welcome").addClass("hidden");
+
+  // answer check function
   answerCheck();
 
   // Timer Start Interval
   var timer = setInterval(function () {
-    if (setTimer <= 0) {
-      clearInterval(setTimer);
-      
+    if (setTimer === false) {
+      time.innerHTML = "Times Up!";
+    } else if (setTimer < 1) {
+      setTimer = false;
+      // Tells user time and score at end of quiz
+      time.innerHTML =
+        "You finished with a time of " +
+        JSON.parse(localStorage.getItem("Time")) +
+        " seconds! Your score is " +
+        JSON.parse(localStorage.getItem("Score"));
     } else {
       time.innerHTML = "Time: " + setTimer + " seconds";
     }
+    // additional time and score to make up for the wait time
     setTimer -= 1;
-    timeCounter += 1;
   }, 1000);
-
-  console.log(score);
-};
+}
 
 // Answer Verification Function
 var answerCheck = function () {
   var verify = document.querySelector("#verify");
 
+  // incorrect answer variety
   var negAnswerArr = [
     "That's not quite right. Try again!",
     "Nope, not That one... Try again!",
@@ -48,6 +53,7 @@ var answerCheck = function () {
     "Incorrect!",
   ];
 
+  // correct answer variety
   var posAnswerArr = [
     "Correct!",
     "Nice!",
@@ -56,7 +62,7 @@ var answerCheck = function () {
     "You're on a roll!",
   ];
 
-  // starts with question one visible
+  // starts with question 1 visible
   q1.style.display = "none";
   q1.style.display = "block";
 
@@ -102,64 +108,48 @@ var answerCheck = function () {
 
   // Ending Highscore Form Function
   $(".fifth").click(function () {
-    
     // lets the user view their time before switching to initials submission
     setTimeout(() => {
-    q5.style.display = "none";
-    $("#verify").addClass("hidden");
-    $("#highscore-form").removeClass("hidden");
-    $("#highscore-form").addClass("visible");
+      q5.style.display = "none";
+      $("#verify").addClass("hidden");
+      $("#highscore-form").removeClass("hidden");
+      $("#highscore-form").addClass("visible");
 
-    // to make up for time lost viewing verifcation
-    setTimer += 1;
-    score += 1;
+      // to make up for time lost viewing verifcation
+      setTimer += 1;
+      score += 1;
 
-    localStorage.setItem("Score", "[" + score + "]");
-    localStorage.setItem("Time", "[" + setTimer + "]");
+      // adding score and time to localStorage
+      localStorage.setItem("Score", score);
+      localStorage.setItem("Time", setTimer);
 
-    setTimer = false;
-
-    localStorage.getItem("Time", JSON.stringify(setTimer));
-
-
-    
+      // stopping the timer
+      setTimer = false;
     }, 1000);
   });
 };
 
-
-const localStorageContent = localStorage.getItem("Name");
-var name = document.querySelector("#initials").value;
-
-
-// TODO:  Form Functionality
 function save() {
-  event.preventDefault();
-
   // save and push new names to array
   var saveName = window.localStorage.setItem("Name", "[]");
   var newData = document.getElementById("initials").value;
   var getName = localStorage.getItem("Name");
-  
-  if (getName == null) {
+
+  // if the array is empty then create an array
+  if (getName === null) {
     saveName;
   }
 
+  // supposed to get old data from the name array and push the new data back to the array but it is not working correctly
   var oldData = JSON.parse(getName);
   oldData.push(newData);
-  
-  localStorage.setItem('Name',JSON.stringify(oldData));
-  
-  // save and push new scores to array
 
+  // set initials in localStorage
+  localStorage.setItem("Name", JSON.stringify(oldData));
 
-  $("#highscore-form").remove();
-  $("#welcome").removeClass("hidden");
-  $("#welcome").addClass("visible");
-
+  // reloads page to start the quiz over again
   location.reload();
-};
+}
 
-
-
-
+// TODO:  correct localStorage data
+// TODO:  Show High Score Data in Table
